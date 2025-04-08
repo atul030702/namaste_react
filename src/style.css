@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "tailwindcss";
+
+@layer utilities {
+    @keyframes flicker{
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+    }
+
+    .flicker{
+        animation: flicker 0.8s infinite alternate ease-in-out;
+    }
+}
+
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.menu-item{
+    min-height: max-content;
+    max-height: 25000px;
+    opacity: 1;
+    overflow: hidden;
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: transform 0.75s ease-in-out, 
+                opacity 0.75s ease-in-out,
+                max-height 0.75s ease-in-out;
+}
+.menu-item.expanded{
+    min-height: max-content;
+    transform: scaleY(1.1);
+    opacity: 1;
+    max-height: 25000px;
+}
+.menu-item.collapsed{
+    min-height: 0;
+    transform: scaleY(0);
+    opacity: 0;
+    max-height: 0;
+}
+
+@media (max-width : 600px) {
+    *{
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .header{
+        width: 100%;
+        height: 60px;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .brand-logo{
+        width: 100px;
+        height: 100%;
+        display: flex;
+        margin-right: 5px;
+    }
+    .brand-logo>.logo{
+        width: 140px;
+        height: 100px;
+    }
+
+    .header-text{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-left: 5px;
+    }
+    .header-text>ul{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 13px;
+        gap: 3px;
+        margin-right: 5px;
+    }
+    .header-text>ul>li, .login-btn{
+        padding: 2.5px 4px;
+    }
+    .cart-icon{
+        width: 25px;
+        height: 30px;
+    }
+
+    .body{
+        width: 100%;
+        min-height: min-content;
+        margin-bottom: 60px;
+    }
+    .body-header{
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+    .body-header>.filter-btn{
+        padding: 5px 10px;
+    }
+    .search-area{
+        display: flex;
+        margin: 5px auto 15px auto;
+    }
+    .search-area>.inputbox{
+        padding: 5px 10px;
+        max-width: 270px;
+        border: 1px solid #aabcca;
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .search-area>.inputbox:focus{
+        border: 1px solid #c26100;
+    }
+    .search-area>.search-btn{
+        padding: 0 7.5px 0 5px;
+    }
+    .restaurants{
+        justify-content: center;
+    }
+
+    .restaurant-card{
+        margin: 15px;
+        padding: 10px;
+    }
+    .restaurant-card>h3{
+        padding: 5px;
+    }
+    .restaurant-card>details{
+        padding: 5px;
+    }
+    .ratings, .res-rating, .item-rating{
+        padding: 2.5px 5px;
+        margin-right: 10px;
+    }
+    .cuisine{
+        margin-top: 5px;
+    }
+
+    .restaurant-menu{
+        max-width: 100%;
+        margin: 5px;
+        margin-bottom: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .restaurant-menu>.header{
+        width: 100%;
+        height: max-content;
+        margin-bottom: 10px;
+    }
+    .image-div{
+        width: 100%;
+        padding: 0 5px;
+
+        .res-image{
+            width: 200px;
+            height: 125px;
+            margin: 5px 2.5px;
+        };
+    }
+    .restaurant-details{
+        width: 100%;
+        margin: 5px;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 2.5px;
+
+        h1{
+            font-size: 32px;
+        };
+    }
+    .restaurant-menu > .body{
+        width: 100%;
+        height: max-content;
+    }
+
+    .menu-item{
+        width: 100%;
+        min-height: max-content;
+        height: auto;
+        margin: 20px 5px;
+        padding: 5px;
+        border-bottom: 4px solid #aaa;
+
+        .description-btn{
+            margin: 5px 0;
+            padding: 2.5px 5px;
+            border: 1px solid #aaa;
+        };  
+    }
+    .description{
+        width: 100%;
+        margin: 5px 0;
+    }
+    .img-add-div{
+        width: max-content;
+        gap: 10px;
+        min-height: 100%;
+        height: auto;
+        max-height: max-content;
+        margin: auto;
+        padding: 0 2.5px;
+
+        img{
+            width: 75px;
+            height: 80px;
+        }
+
+        .add-btn{
+            width: 75px;
+            padding: 5px 2.5px;
+        };
+    }
+
+    .toggle-btn{
+        width: max-content;
+    }
+
+    .about-container{
+        margin: 5px;
+
+        .about-content{
+            flex-direction: column;
+        };
+    }
+    .profile-div{
+        margin: 15px auto;
+        padding: 5px;
+
+        .profile-btn{
+            padding: 5px 10px;
+            margin-bottom: 10px;
+        };
+    }
+    .about-text{
+        margin: 10px 5px;
+        align-items: center;
+
+        h1{
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 10px;
+
+            span{
+                padding: 0 7.5px;
+            };
+        };
+        h4{
+            font-size: 20px;
+        }
+    }
+
+    .aboutMe-div{
+        width: 300px;
+        padding: 10px;
+    }
+
+    .contact-div{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+        flex-grow: 1;
+
+        .contact-text-area{
+            width: 320px;
+            height: max-content;
+            margin: 10px 0 40px 0; 
+        };
+
+        img{
+            display: none;
+        };
+
+        input, textarea{
+            margin: 5px auto;
+            padding: 5px 10px;
+            border: 2px solid #c26100;
+        };
+        button{
+            margin: 5px 0;
+            padding: 5px 10px;
+        };
+    }
+
+    .shimmer{
+        margin: 0 auto 60px auto;
+    }
+    .menu-shimmer{
+        width: 100%;
+        margin: 10px 5px 30px 5px;
+    }
+}
