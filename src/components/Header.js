@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
 import brandIcon from "../assets/brand-logo.webp";
-import cartIcon from "../assets/cart.svg";
+import { CartContext } from "../utils/CartContext.js";
 
 const Header = () => {
-
+    const { cartItems } = useContext(CartContext);
     const [btnNameReact, setBtnNameReact] = useState("Login");
     const onlineStatus = useOnlineStatus();
 
@@ -35,7 +35,9 @@ const Header = () => {
                     </li>
 
                     <li className="px-4 cursor-pointer hover:bg-[#d97919] rounded-xl hover:scale-[1.1] transition">
-                        <img src={cartIcon} alt="cart-icon" className="cart-icon size-8" draggable="false" />
+                        <Link to="/cart">
+                            Cart {cartItems.length}
+                        </Link>
                     </li>
 
                     <li>
