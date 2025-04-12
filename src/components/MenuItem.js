@@ -1,17 +1,18 @@
 import { useState, useContext } from "react";
 import { resImageURL } from "../utils/constants";
-import { CartContext } from "../utils/CartContext.js";
 
 import starIcon from "../assets/star-rating.svg";
 import vegIcon from "../assets/veg.svg";
 import nonVegIcon from "../assets/non-veg.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../utils/cartSlice.js";
 
 const MenuItem = ({ item, showItems }) => {
     const [showDescription, setShowDescription] = useState(null);
-    const { addToCart, cartItems } = useContext(CartContext);
 
-    const cartItem = cartItems.find(cartItem => cartItem.id === item.id);
-    const quantity = cartItem ? cartItem.quantity : 0;
+    const dispatch = useDispatch();
+    const cartLength = useSelector((store) => store.cart.items)
+
 
     const returnBgColor = (rating) => {
         return rating >= 4 ? "#00ad1d" : "#ec3838";
@@ -24,6 +25,11 @@ const MenuItem = ({ item, showItems }) => {
     function returnBestseller(boolean) {
         return boolean === true ? "Bestseller" : ""
     }
+
+    const handleAddItem = (item) => {
+        //Dispatch an action
+        dispatch(addItem(item));
+    };
 
     return (
         <div 
@@ -81,9 +87,9 @@ const MenuItem = ({ item, showItems }) => {
                             
                 <button 
                     className="add-btn text-lg rounded-[5px] bg-gray-300 py-1.5 px-4 my-2.5 cursor-pointer w-[100px] text-black hover:bg-gray-100 transition"
-                    onClick={() => addToCart(item)}
+                    onClick={() => handleAddItem(item)}
                 >
-                    {quantity === 0 ? "ADD +" : `Add ${quantity}+`}
+                    {cartLength.length === 0 ? "ADD +" : `Add ${cartLength.length}+`}
                 </button>
                             
             </div>

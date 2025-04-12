@@ -7,21 +7,25 @@ import Body from "./components/Body.js";
 import ContactUS from "./components/Contact.js";
 import Error from "./components/Error.js";
 import Cart from "./components/Cart.js";
+import Cart2 from "./components/Cart2.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import Footer from "./components/Footer.js";
 import "../src/style.css";
+import appStore from "./utils/appStore.js";
+import { Provider } from "react-redux";
 
 const About = lazy(() => import("./components/About.js") );
 
 const AppLayout = () => {
     return (
-        <div className="app">
-            {/* Header */}
-            <Header />
+        <Provider store={appStore}>
+            <div className="app">
+                <Header />
             
-            <Outlet />
-        </div>
-    )
+                <Outlet />
+            </div>
+        </Provider>
+    );
 };
 
 const HomePage = () => {
@@ -81,7 +85,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/cart",
-                element: <Cart />
+                element: <Cart2 />
             },
             {
                 path: "/restaurant/:resId",

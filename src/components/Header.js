@@ -3,11 +3,16 @@ import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
 import brandIcon from "../assets/brand-logo.webp";
 import { CartContext } from "../utils/CartContext.js";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const { cartItems } = useContext(CartContext);
     const [btnNameReact, setBtnNameReact] = useState("Login");
     const onlineStatus = useOnlineStatus();
+
+    //subscribing to the store using selector
+    const cart = useSelector((store) => store.cart.items);
+    console.log(cart);
 
     return (
         <div className="header flex w-full h-[100px] bg-white-100 justify-between shadow-lg mb-2">
@@ -36,7 +41,7 @@ const Header = () => {
 
                     <li className="px-4 cursor-pointer hover:bg-[#d97919] rounded-xl hover:scale-[1.1] transition">
                         <Link to="/cart">
-                            Cart {cartItems.length}
+                            Cart {cart.length}
                         </Link>
                     </li>
 
